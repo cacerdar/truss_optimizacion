@@ -9,7 +9,7 @@ class ENFRIAMIENTO(Enum):
     LIN = 3
 
 
-class Steel_annealing_method():
+class SimulatedAnnealingMethod():
 
     def __init__(self, tmax, iteraciones=100, enfriamiento=ENFRIAMIENTO.LIN, coeficiente=1):
         self._temp = tmax
@@ -28,16 +28,16 @@ class Steel_annealing_method():
         self._solucion = solucion
 
 
-    def run(self, f, m):
+    def run(self):
 
         while int(self._tmin) < int(self._temp):  # and self._temp >= 1:
             itera = self._iteraciones
             while itera > 0:
 
                 solucion1 = self.construye_vecindad(self._solucion)
-                fitness_solucion1 = self.evaluar(solucion1, f, m)
+                fitness_solucion1 = self.evaluar(solucion1)
 
-                fitness_solucion  = self.evaluar(self._solucion, f, m)
+                fitness_solucion  = self.evaluar(self._solucion)
 
                 de = fitness_solucion1 - fitness_solucion
 
